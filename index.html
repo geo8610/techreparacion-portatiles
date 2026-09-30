@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reparación y Mantenimiento de Portátiles y Mac en Pereira | TechRepair</title>
+<meta name="description" content="Reparación y mantenimiento de portátiles y Mac en Pereira. Diagnóstico en el día, garantía por escrito, cambio de pantalla, batería, teclado, SSD y reparación de placa. Centro Comercial Santa Catalina. WhatsApp 301 443 3043.">
+<meta name="keywords" content="reparación de portátiles Pereira, mantenimiento de MacBook Pereira, mantenimiento de laptop Pereira, cambio de batería portátil Pereira, cambio de pantalla portátil Pereira, reparación de MacBook Pereira, servicio técnico portátiles Pereira, reparación de placa Pereira, limpieza de laptop Pereira">
+<meta name="author" content="TechRepair Pereira">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="canonical" href="https://techreparacionportatiles.vercel.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="TechRepair">
+<meta property="og:title" content="Reparación y Mantenimiento de Portátiles y Mac en Pereira">
+<meta property="og:description" content="Diagnóstico en el día, garantía por escrito. Mantenimiento preventivo, cambio de pantalla, batería, teclado, SSD y reparación de placa. WhatsApp 301 443 3043.">
+<meta property="og:image" content="https://techreparacionportatiles.vercel.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:url" content="https://techreparacionportatiles.vercel.app/">
+<meta name="twitter:image" content="https://techreparacionportatiles.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reparación y Mantenimiento de Portátiles y Mac | TechRepair Pereira">
+<meta name="twitter:description" content="Diagnóstico en el día, garantía por escrito. Mantenimiento preventivo, pantalla, batería, teclado, SSD y placa.">
+<meta name="twitter:image" content="https://techreparacionportatiles.vercel.app/og.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230A0A0B'/><path d='M28 30h44M28 50h30M28 70h44' stroke='%2322D3A5' stroke-width='9' stroke-linecap='round'/></svg>">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    { 950:'#0A0A0B', 900:'#111113', 850:'#161619', 800:'#1D1D22', 700:'#2A2A31' },
+        accent: { DEFAULT:'#22D3A5', soft:'#7BE8CD', deep:'#0E9E7A' },
+        wasa:   { DEFAULT:'#25D366', hover:'#1EBE5A' }
+      },
+      fontFamily: {
+        sans: ['-apple-system','BlinkMacSystemFont','Segoe UI','Roboto','Helvetica Neue','Arial','sans-serif']
+      },
+      letterSpacing: { tightest: '-0.045em' }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ComputerRepair",
+  "name": "TechRepair",
+  "description": "Servicio de reparación y mantenimiento de portátiles y Mac en Pereira.",
+  "telephone": "+573014433043",
+  "email": "geo8610@gmail.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Centro Comercial Santa Catalina",
+    "addressLocality": "Pereira",
+    "addressRegion": "Risaralda",
+    "addressCountry": "CO"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Pereira" },
+    { "@type": "City", "name": "Dosquebradas" },
+    { "@type": "City", "name": "Santa Rosa de Cabal" },
+    { "@type": "City", "name": "Armenia" }
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "18:00"
+  }]
+}
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+  ::selection { background: #22D3A5; color: #0A0A0B; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s cubic-bezier(.16,1,.3,1); }
+  .reveal-in { opacity: 1; transform: none; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .glow-accent { box-shadow: 0 0 0 1px rgba(34,211,165,.25), 0 24px 60px -24px rgba(34,211,165,.4); }
+  .glow-wa { box-shadow: 0 10px 40px -12px rgba(37,211,102,.6); }
+
+  @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+  .floaty { animation: floaty 4s ease-in-out infinite; }
+
+  @keyframes orbFloat {
+    0%,100% { transform: translate(-50%,-50%) scale(1) }
+    50%     { transform: translate(-50%,-50%) scale(1.08) }
+  }
+  .orb-float { animation: orbFloat 10s ease-in-out infinite; }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0 }
+    100% { background-position: -200% 0 }
+  }
+  .shimmer {
+    background-image: linear-gradient(110deg, transparent 30%, rgba(34,211,165,.16) 50%, transparent 70%);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes batteryPulse {
+    0%,100% { opacity: 1;    transform: scale(1) }
+    50%     { opacity: .35;  transform: scale(.82) }
+  }
+  .battery-pulse { animation: batteryPulse 1.5s ease-in-out infinite; }
+  .battery-pulse-2 { animation-delay: .3s; }
+  .battery-pulse-3 { animation-delay: .6s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .floaty, .orb-float, .shimmer, .battery-pulse { animation: none !important; }
+  }
+</style>
+</head>
+
+<body class="bg-ink-950 text-neutral-100 font-sans antialiased">
+<div id="app"></div>
+
+<script>
+const CONFIG = {
+  brand: {
+    name: 'TechRepair',
+    phoneDigits: '573014433043',
+    phoneDisplay: '301 443 3043',
+    email: 'geo8610@gmail.com',
+    address: 'Centro Comercial Santa Catalina',
+    addressLine2: 'Pereira, Risaralda',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Centro+Comercial+Santa+Catalina+Pereira',
+    mapEmbed: 'https://www.openstreetmap.org/export/embed.html?bbox=-75.7020%2C4.8060%2C-75.6850%2C4.8220&layer=mapnik&marker=4.8140%2C-75.6935',
+    hours: [
+      { day: 'Lunes a viernes', time: '8:00 am – 6:00 pm' },
+      { day: 'Sábados',          time: '8:00 am – 4:00 pm' },
+      { day: 'Domingos',         time: 'Cerrado' }
+    ],
+    coverage: 'Pereira, Dosquebradas, Santa Rosa de Cabal y el Eje Cafetero'
+  },
+
+  nav: { cta: 'Escríbenos' },
+
+  hero: {
+    badge: 'Pereira · Diagnóstico en el día',
+    titleLead: 'Reparación y',
+    titleAccent: 'mantenimiento',
+    titleTail: 'de portátiles y Mac',
+    subtitle: 'Te lo dejamos como nuevo. Mantenimiento real, reparación de hardware y de placa, siempre con garantía por escrito. Ingeniero electrónico certificado por Apple, con más de 12 años de experiencia.',
+    ctaPrimary: 'Escríbenos por WhatsApp',
+    ctaSecondary: 'Ver servicios y precios',
+    trust: [
+      { icon: 'zap',    title: 'Diagnóstico el mismo día', text: 'Diagnóstico y cotización en menos de 2 horas.' },
+      { icon: 'shield', title: 'Garantía por escrito',     text: 'Hasta 12 meses en mano de obra y repuestos.' },
+      { icon: 'chip',   title: 'Reparamos la placa',       text: 'Microsoldadura a nivel de componente.' }
+    ],
+    maintenance: {
+      badge: 'Servicio estrella',
+      title: 'Mantenimiento preventivo completo',
+      lead: 'Casi todos los fallos que verás en tu portátil se acumularon mucho antes de romperse: un ventilador tapado de polvo, la pasta térmica seca, el sistema lleno de archivos basura. El mantenimiento es la forma más barata de reparación que existe.',
+      bullets: [
+        'Limpieza profunda de ventiladores y canales de aire',
+        'Cambio de pasta térmica y cleaning del disipador',
+        'Reinstalación limpia de macOS o Windows',
+        'Limpieza de teclado, bisagras y puertos',
+        'Calibración y prueba de batería',
+        'Entrega el mismo día'
+      ],
+      price: 'Desde $70.000',
+      cta: 'Cotizar mantenimiento'
+    }
+  },
+
+  symptoms: {
+    title: '¿Reconoces alguno de estos problemas?',
+    subtitle: 'Toca tu caso y escríbenos directo por WhatsApp. Ya tenemos el contexto de tu problema, no tienes que explicar nada desde cero.',
+    items: [
+      { icon: 'power',    title: 'No enciende',                text: 'Sin imagen, sin ventilador, o se apaga al conectarlo.',                msg: 'Hola, mi portátil no enciende. ¿Me pueden ayudar?' },
+      { icon: 'monitor',  title: 'Pantalla rota o con líneas',  text: 'Golpe, líneas verticales, manchas negras o panel parpadeando.',       msg: 'Hola, mi portátil tiene la pantalla dañada. ¿Cuánto cuesta el cambio?' },
+      { icon: 'battery',  title: 'La batería dura nada',        text: 'Se apaga solo, dura una hora o no carga con el cargador.',            msg: 'Hola, la batería de mi portátil dura muy poco. ¿Hacen cambio de batería?' },
+      { icon: 'fan',      title: 'Va lento y se calienta',      text: 'Ventilador ruidoso, se pone caliente al tocarlo o se congela.',       msg: 'Hola, mi portátil se calienta y va muy lento. ¿Le hacen mantenimiento?' },
+      { icon: 'droplet',  title: 'Daño por líquido',            text: 'Cayó café, agua o bebida. Se apagó, pero la placa se puede salvar.',  msg: 'Hola, mi portátil se mojó. ¿Se puede reparar?' },
+      { icon: 'keyboard', title: 'El teclado falla',            text: 'Teclas que no responden, letras dobles o pegadas por líquido.',      msg: 'Hola, mi teclado no responde bien. ¿Hacen cambio de teclado?' }
+    ]
+  },
+
+  services: {
+    title: 'Servicios y precios de referencia',
+    subtitle: 'Precios aproximados. El valor final te lo confirmamos con el diagnóstico, sin cambios ni sorpresas.',
+    note: 'Todos los trabajos incluyen prueba de carga completa y garantía por escrito.',
+    items: [
+      { icon: 'wrench',   title: 'Mantenimiento preventivo',       price: 'Desde $70.000',  time: 'Mismo día', featured: true,
+        text: 'El servicio que alarga la vida de tu equipo. Limpieza interna profunda y cambio de pasta térmica para que deje de calentarse y de perder rendimiento.',
+        bullets: ['Limpieza de ventiladores y canales de aire', 'Cambio de pasta térmica', 'Reinstalación limpia de macOS o Windows', 'Calibración y prueba de batería'] },
+      { icon: 'monitor',  title: 'Cambio de pantalla',            price: 'Desde $180.000', time: 'Mismo día', featured: false,
+        text: 'Reemplazo completo de panel en Windows y Mac, con pantallas de calidad Retina/IPS y calibración de color.',
+        bullets: ['MacBook Air, Pro y iMac', 'Reparamos flexgate y retroiluminación', 'Garantía en el panel'] },
+      { icon: 'battery',  title: 'Cambio de batería',             price: 'Desde $95.000',  time: '1 a 2 horas', featured: false,
+        text: 'Baterías de igual o mayor capacidad que la original, con calibración profesional después de instalar.',
+        bullets: ['De 2012 a la actualidad', 'Hasta 10+ horas de uso real', 'Batería al 100% de salud'] },
+      { icon: 'keyboard', title: 'Teclado y daño por líquido',    price: 'Desde $120.000', time: 'Mismo día', featured: false,
+        text: 'Cambio completo de teclado, incluyendo los mecanismos Butterfly y Scissor de MacBook.',
+        bullets: ['Retroiluminación funcional', 'Limpieza de placa por líquidos', 'Layout español o inglés'] },
+      { icon: 'drive',    title: 'Cambio y ampliación de SSD',    price: 'Desde $140.000', time: 'Mismo día', featured: false,
+        text: 'Instalación de disco NVMe para que tu equipo arranque en segundos y aguante el doble de años.',
+        bullets: ['Clonado sin perder tus archivos', 'El doble de espacio', 'Instalación del sistema'] },
+      { icon: 'chip',     title: 'Reparación de placa',           price: 'Desde $180.000', time: '1 a 3 días', featured: false,
+        text: 'Microsoldadura y reparación a nivel de componente. Resucitamos placas que otros talleres dan por perdidas.',
+        bullets: ['Reballing de chips', 'Daño por líquido en placa', 'Diagnóstico con osciloscopio'] }
+    ]
+  },
+
+  process: {
+    title: 'Cómo funciona',
+    subtitle: 'Sin formularios y sin vueltas. Tres pasos y te lo devolvemos listo.',
+    steps: [
+      { title: 'Trae tu equipo',     text: 'Lo traes al local en Santa Catalina o nos escribes para coordinar. Sin cita previa.' },
+      { title: 'Diagnóstico y precio', text: 'Revisamos el equipo y te mandamos el diagnóstico con precio y tiempo por WhatsApp.' },
+      { title: 'Reparación y entrega', text: 'Reparamos, probamos todo y te lo entregamos con la garantía escrita.' }
+    ]
+  },
+
+  why: {
+    title: 'Por qué la gente nos recomienda',
+    items: [
+      { icon: 'wrench', title: 'Técnicos especialistas', text: 'Trabajamos a nivel de microcomponentes, no solo cambiamos piezas.' },
+      { icon: 'zap',    title: 'Se hace en el día',      text: 'La mayoría de las reparaciones quedan listas mientras nos esperas.' },
+      { icon: 'shield', title: 'Garantía real',          text: 'Si vuelve a fallar, no pagas otra vez. Sin letra pequeña.' },
+      { icon: 'star',   title: 'Precio claro',           text: 'El precio lo sabes antes de empezar. No hay sorpresas al final.' }
+    ]
+  },
+
+  contact: {
+    title: 'Escríbenos y te damos el diagnóstico',
+    subtitle: 'Atendemos Pereira y municipios cercanos. Lleva tu equipo al local o mándanos fotos por WhatsApp y te decimos qué tiene, sin compromiso.',
+    cta: 'Abrir WhatsApp'
+  },
+
+  footer: {
+    tagline: 'Reparación y mantenimiento de portátiles y Mac en Pereira.',
+    servicesTitle: 'Servicios',
+    contactTitle: 'Contacto',
+    legal: 'Todos los derechos reservados.'
+  }
+};
+
+const ICONS = {
+  whatsapp: '<path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.28-.2-.57-.35M12.05 21.8a9.87 9.87 0 0 1-5.03-1.38l-.36-.22-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.17 6.16 6.6 1.73 12.05 1.73c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.88-9.88 9.88M20.46 3.5A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.41"/>',
+  phone:  '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.79.7 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.35 1.73.58 2.63.7a2 2 0 0 1 1.9 2.11"/>',
+  mail:   '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+  pin:    '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  clock:  '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  zap:    '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>',
+  star:   '<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1L12 2Z"/>',
+  check:  '<path d="M20 6 9 17l-5-5"/>',
+  chevron:'<path d="m9 18 6-6-6-6"/>',
+  power:  '<path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/>',
+  monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  battery:'<rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2M6 10v4"/>',
+  fan:    '<circle cx="12" cy="12" r="2.5"/><path d="M12 9.5c0-4 1-6.5 4.5-6.5S21 5 19 7.5s-4.5 2-7 2Zm2.5 2.5c4 0 6.5 1 6.5 4.5S21 21 19 19s-2-4.5-2-7ZM9.5 12c0 4-1 6.5-4.5 6.5S3 19 5 17s4.5-2 7-2Z"/>',
+  droplet:'<path d="M12 2.7 6.7 8a7.5 7.5 0 1 0 10.6 0L12 2.7Z"/>',
+  keyboard:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M7 14h10"/>',
+  drive:  '<path d="M22 12H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z"/><path d="M6 16h.01M10 16h.01"/>',
+  chip:   '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>',
+  wrench: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>',
+  arrow:  '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  spark:  '<path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/>'
+};
+
+const WA = 'https://wa.me/' + CONFIG.brand.phoneDigits;
+const waLink = (msg) => WA + '?text=' + encodeURIComponent(msg || 'Hola, quiero información sobre la reparación de mi portátil.');
+
+function icon(name, cls) {
+  return '<svg class="' + (cls || 'w-5 h-5') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[name] || '') + '</svg>';
+}
+
+function sectionHead(title, subtitle, align) {
+  return '<div class="max-w-2xl ' + (align === 'center' ? 'mx-auto text-center' : '') + '" data-reveal>' +
+    '<h2 class="text-3xl sm:text-4xl font-semibold tracking-tightest text-white text-balance">' + title + '</h2>' +
+    (subtitle ? '<p class="mt-4 text-neutral-400 text-pretty leading-relaxed">' + subtitle + '</p>' : '') +
+  '</div>';
+}
+
+function render() {
+  const b = CONFIG.brand;
+  const H = CONFIG.hero;
+
+  const waBtn = (label, cls) =>
+    '<a href="' + waLink() + '" target="_blank" rel="noopener" class="' + cls + '">' +
+      '<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">' + ICONS.whatsapp + '</svg>' +
+      '<span>' + label + '</span>' +
+    '</a>';
+
+  const WA_PRIMARY = 'inline-flex items-center justify-center gap-2.5 rounded-xl bg-wasa px-6 py-3.5 font-semibold text-ink-950 hover:bg-wasa-hover glow-wa transition-colors duration-200 text-[15px]';
+  const WA_GHOST   = 'inline-flex items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[.04] px-5 py-3.5 font-medium text-neutral-200 hover:border-accent/50 hover:text-white transition-colors duration-200 text-[15px]';
+
+  const header = `
+  <header id="header" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b border-transparent">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#inicio" class="flex items-center gap-2.5 group">
+        <span class="grid place-items-center w-8 h-8 rounded-lg bg-accent/12 border border-accent/30 text-accent transition-colors group-hover:bg-accent/20">
+          ${icon('wrench', 'w-4 h-4')}
+        </span>
+        <span class="font-semibold tracking-tight text-white">${b.name}</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-400">
+        <a href="#sintomas" class="hover:text-white transition-colors">Síntomas</a>
+        <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+        <a href="#proceso" class="hover:text-white transition-colors">Cómo funciona</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+      </nav>
+      ${waBtn(CONFIG.nav.cta, 'inline-flex items-center gap-2 rounded-lg bg-wasa px-4 py-2.5 text-sm font-semibold text-ink-950 hover:bg-wasa-hover transition-colors')}
+    </div>
+  </header>`;
+
+  const laptop = `
+  <div data-reveal class="hidden lg:flex items-center justify-center" aria-hidden="true">
+    <div class="relative">
+      <div class="orb-float absolute top-1/2 left-1/2 w-[480px] h-[480px] rounded-full"
+           style="background:radial-gradient(circle,rgba(34,211,165,.2),rgba(34,211,165,.07),transparent 70%)"></div>
+
+      <div class="relative z-10 w-[400px] -rotate-3">
+        <div class="relative w-full aspect-[16/10] rounded-t-[14px] border-[3px] border-b-0 border-ink-700 overflow-hidden"
+             style="background:linear-gradient(145deg,#161619,#111113)">
+          <span class="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-ink-950 border border-ink-700 z-20"></span>
+          <div class="absolute inset-1.5 rounded-lg overflow-hidden flex flex-col items-center justify-center gap-2.5"
+               style="background:linear-gradient(135deg,#0A0A0B,#111113,#0A0A0B)">
+            <div class="shimmer absolute inset-0"></div>
+            <span class="relative text-2xl font-black text-accent tracking-[.22em] pl-[.22em]"
+                  style="text-shadow:0 0 40px rgba(34,211,165,.5),0 0 80px rgba(34,211,165,.2)">${b.name.toUpperCase()}</span>
+            <span class="relative text-[9px] font-semibold tracking-[.3em] pl-[.3em] text-neutral-500">SERVICIO TÉCNICO</span>
+            <span class="relative flex gap-2 mt-1">
+              <span class="battery-pulse w-2.5 h-2.5 rounded-full bg-accent" style="box-shadow:0 0 12px rgba(34,211,165,.6)"></span>
+              <span class="battery-pulse battery-pulse-2 w-2.5 h-2.5 rounded-full bg-accent-soft" style="box-shadow:0 0 12px rgba(123,232,205,.5)"></span>
+              <span class="battery-pulse battery-pulse-3 w-2.5 h-2.5 rounded-full bg-accent-deep" style="box-shadow:0 0 12px rgba(14,158,122,.5)"></span>
+            </span>
+          </div>
+        </div>
+        <div class="w-[104%] -ml-[2%] h-3 rounded-b bg-gradient-to-b from-ink-700 to-ink-800"></div>
+        <div class="w-[112%] -ml-[6%] h-2 rounded-b-xl bg-gradient-to-b from-ink-700 to-ink-800" style="box-shadow:0 4px 20px rgba(0,0,0,.4)"></div>
+      </div>
+    </div>
+  </div>`;
+
+  const hero = `
+  <section id="inicio" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24">
+    <div class="absolute inset-0 grid-bg opacity-60"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(34,211,165,.13),transparent_70%)]"></div>
+
+    <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid lg:grid-cols-2 lg:items-center gap-12">
+      <div class="max-w-3xl">
+        <div data-reveal class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-3.5 py-1.5 text-[13px] text-neutral-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          ${H.badge}
+        </div>
+
+        <h1 data-reveal class="mt-7 text-4xl sm:text-6xl font-semibold tracking-tightest text-white text-balance leading-[1.05]">
+          ${H.titleLead}
+          <span class="relative inline-block">
+            <span class="relative z-10 text-accent">${H.titleAccent}</span>
+          </span>
+          ${H.titleTail}
+        </h1>
+
+        <p data-reveal class="mt-6 max-w-xl text-lg text-neutral-400 text-pretty leading-relaxed">
+          ${H.subtitle}
+        </p>
+
+        <div data-reveal class="mt-9 flex flex-col sm:flex-row gap-3.5">
+          ${waBtn(H.ctaPrimary, WA_PRIMARY)}
+          <a href="#servicios" class="${WA_GHOST}">
+            ${H.ctaSecondary}
+            ${icon('arrow', 'w-4 h-4 shrink-0')}
+          </a>
+        </div>
+      </div>
+
+      ${laptop}
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        ${H.trust.map(t => `
+        <div data-reveal class="rounded-2xl border border-white/[.07] bg-ink-900/60 p-5 backdrop-blur-sm">
+          <span class="grid place-items-center w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 text-accent">${icon(t.icon, 'w-4 h-4')}</span>
+          <h3 class="mt-4 font-semibold text-white text-[15px]">${t.title}</h3>
+          <p class="mt-1.5 text-sm text-neutral-500 leading-relaxed">${t.text}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+
+  const maint = `
+  <section class="relative py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div data-reveal class="relative overflow-hidden rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/[.09] via-ink-900/80 to-ink-900/80 p-7 sm:p-11">
+        <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full bg-accent/10 blur-3xl"></div>
+
+        <div class="relative grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-[11px] font-bold tracking-widest text-ink-950 uppercase">
+              ${icon('spark', 'w-3.5 h-3.5')}
+              ${H.maintenance.badge}
+            </span>
+            <h2 class="mt-5 text-3xl sm:text-4xl font-semibold tracking-tightest text-white text-balance leading-tight">
+              ${H.maintenance.title}
+            </h2>
+            <p class="mt-5 text-neutral-400 leading-relaxed text-pretty">
+              ${H.maintenance.lead}
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+              <span class="text-2xl font-semibold tracking-tight text-accent">${H.maintenance.price}</span>
+              <a href="${waLink('Hola, quiero cotizar el mantenimiento preventivo de mi portátil.')}" target="_blank" rel="noopener"
+                 class="inline-flex items-center justify-center gap-2 rounded-xl bg-wasa px-5 py-3 font-semibold text-ink-950 hover:bg-wasa-hover glow-wa transition-colors">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">${ICONS.whatsapp}</svg>
+                ${H.maintenance.cta}
+              </a>
+            </div>
+          </div>
+
+          <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3.5 lg:border-l lg:border-white/[.07] lg:pl-14">
+            ${H.maintenance.bullets.map(item => `
+            <li class="flex items-start gap-2.5 text-[15px] text-neutral-300">
+              <span class="mt-0.5 grid place-items-center w-5 h-5 rounded-full bg-accent/15 text-accent shrink-0">${icon('check', 'w-3 h-3')}</span>
+              <span>${item}</span>
+            </li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>`;
+
+  const symptoms = `
+  <section id="sintomas" class="relative py-20 sm:py-28 border-t border-white/[.06]">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      ${sectionHead(CONFIG.symptoms.title, CONFIG.symptoms.subtitle, 'center')}
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        ${CONFIG.symptoms.items.map(s => `
+        <a href="${waLink(s.msg)}" target="_blank" rel="noopener" data-reveal
+           class="group relative rounded-2xl border border-white/[.07] bg-ink-900/60 p-6 hover:border-accent/45 hover:bg-ink-850 transition-all duration-200">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid place-items-center w-11 h-11 rounded-xl bg-white/[.05] border border-white/[.08] text-neutral-300 group-hover:border-accent/30 group-hover:text-accent transition-colors">
+              ${icon(s.icon, 'w-5 h-5')}
+            </span>
+            <span class="text-neutral-600 group-hover:text-accent transition-colors mt-1">${icon('chevron', 'w-4 h-4')}</span>
+          </div>
+          <h3 class="mt-5 font-semibold text-white text-[15px]">${s.title}</h3>
+          <p class="mt-2 text-sm text-neutral-500 leading-relaxed">${s.text}</p>
+        </a>`).join('')}
+      </div>
+    </div>
+  </section>`;
+
+  const services = `
+  <section id="servicios" class="relative py-20 sm:py-28 border-t border-white/[.06]">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      ${sectionHead(CONFIG.services.title, CONFIG.services.subtitle, 'center')}
+
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
+        ${CONFIG.services.items.map(s => s.featured ? `
+        <article data-reveal class="md:col-span-2 relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/[.07] to-ink-900/80 p-7 sm:p-9">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-6">
+            <span class="grid place-items-center w-12 h-12 rounded-xl bg-accent/12 border border-accent/25 text-accent shrink-0">
+              ${icon(s.icon, 'w-6 h-6')}
+            </span>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <h3 class="text-xl font-semibold tracking-tight text-white">${s.title}</h3>
+                <span class="rounded-full bg-accent/15 border border-accent/25 px-2.5 py-0.5 text-[11px] font-semibold tracking-wide text-accent uppercase">Recomendado</span>
+              </div>
+              <p class="mt-3 text-neutral-400 leading-relaxed text-pretty">${s.text}</p>
+              <ul class="mt-6 grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                ${s.bullets.map(x => `
+                <li class="flex items-start gap-2.5 text-sm text-neutral-300">
+                  <span class="mt-0.5 grid place-items-center w-4 h-4 rounded-full bg-accent/15 text-accent shrink-0">${icon('check', 'w-2.5 h-2.5')}</span>
+                  <span>${x}</span>
+                </li>`).join('')}
+              </ul>
+            </div>
+            <div class="sm:text-right shrink-0">
+              <div class="text-2xl font-semibold tracking-tight text-accent">${s.price}</div>
+              <div class="mt-1 text-sm text-neutral-500">${s.time}</div>
+              <a href="${waLink('Hola, quiero cotizar: ' + s.title + '.')}" target="_blank" rel="noopener"
+                 class="mt-5 inline-flex items-center gap-2 rounded-lg bg-wasa px-4 py-2.5 text-sm font-semibold text-ink-950 hover:bg-wasa-hover transition-colors">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">${ICONS.whatsapp}</svg>
+                Cotizar
+              </a>
+            </div>
+          </div>
+        </article>` : `
+        <article data-reveal class="rounded-2xl border border-white/[.07] bg-ink-900/60 p-7 hover:border-white/15 transition-colors">
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid place-items-center w-10 h-10 rounded-xl bg-white/[.05] border border-white/[.08] text-neutral-300">
+              ${icon(s.icon, 'w-5 h-5')}
+            </span>
+            <div class="text-right">
+              <div class="font-semibold text-accent text-[15px]">${s.price}</div>
+              <div class="text-xs text-neutral-500 mt-0.5">${s.time}</div>
+            </div>
+          </div>
+          <h3 class="mt-5 font-semibold text-white">${s.title}</h3>
+          <p class="mt-2.5 text-sm text-neutral-400 leading-relaxed">${s.text}</p>
+          <ul class="mt-5 space-y-2">
+            ${s.bullets.map(x => `
+            <li class="flex items-start gap-2.5 text-sm text-neutral-500">
+              <span class="mt-0.5 text-accent shrink-0">${icon('check', 'w-3.5 h-3.5')}</span>
+              <span>${x}</span>
+            </li>`).join('')}
+          </ul>
+          <a href="${waLink('Hola, quiero cotizar: ' + s.title + '.')}" target="_blank" rel="noopener"
+             class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-accent transition-colors">
+            Consultar por este servicio
+            ${icon('chevron', 'w-3.5 h-3.5')}
+          </a>
+        </article>`).join('')}
+      </div>
+
+      <p data-reveal class="mt-8 text-center text-sm text-neutral-600">${CONFIG.services.note}</p>
+    </div>
+  </section>`;
+
+  const process = `
+  <section id="proceso" class="relative py-20 sm:py-28 border-t border-white/[.06]">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      ${sectionHead(CONFIG.process.title, CONFIG.process.subtitle, 'center')}
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+        ${CONFIG.process.steps.map((s, i) => `
+        <div data-reveal class="relative">
+          <span class="text-6xl font-semibold tracking-tightest text-white/[.06] leading-none">${String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-4 font-semibold text-white">${s.title}</h3>
+          <p class="mt-2.5 text-neutral-500 leading-relaxed text-[15px]">${s.text}</p>
+          ${i < 2 ? `<span class="hidden md:block absolute top-8 right-0 w-8 h-px bg-gradient-to-r from-white/15 to-transparent"></span>` : ''}
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+
+  const why = `
+  <section class="relative py-20 sm:py-28 border-t border-white/[.06]">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      ${sectionHead(CONFIG.why.title, '', 'center')}
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        ${CONFIG.why.items.map(w => `
+        <div data-reveal class="rounded-2xl border border-white/[.07] bg-ink-900/60 p-6">
+          <span class="grid place-items-center w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 text-accent">${icon(w.icon, 'w-5 h-5')}</span>
+          <h3 class="mt-4 font-semibold text-white text-[15px]">${w.title}</h3>
+          <p class="mt-1.5 text-sm text-neutral-500 leading-relaxed">${w.text}</p>
+        </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+
+  const contact = `
+  <section id="contacto" class="relative py-20 sm:py-28 border-t border-white/[.06] overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_100%,rgba(37,211,102,.08),transparent_70%)]"></div>
+
+    <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div data-reveal>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tightest text-white text-balance">${CONFIG.contact.title}</h2>
+          <p class="mt-4 text-neutral-400 leading-relaxed text-pretty">${CONFIG.contact.subtitle}</p>
+
+          <a href="${waLink()}" target="_blank" rel="noopener" class="mt-8 inline-flex items-center justify-center gap-3 rounded-xl bg-wasa px-7 py-4 text-base font-semibold text-ink-950 hover:bg-wasa-hover glow-wa transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" aria-hidden="true">${ICONS.whatsapp}</svg>
+            ${CONFIG.contact.cta}
+          </a>
+          <p class="mt-3 text-sm text-neutral-500">WhatsApp ${b.phoneDisplay} · respondemos en horario de oficina</p>
+
+          <div class="mt-10 space-y-5">
+            <a href="${b.mapsUrl}" target="_blank" rel="noopener" class="flex items-start gap-4 group">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-white/[.05] border border-white/[.08] text-accent shrink-0">${icon('pin', 'w-5 h-5')}</span>
+              <span>
+                <span class="block text-sm text-neutral-500">Dirección</span>
+                <span class="block text-neutral-200 group-hover:text-accent transition-colors">${b.address}, ${b.addressLine2}</span>
+              </span>
+            </a>
+            <a href="tel:+${b.phoneDigits}" class="flex items-start gap-4 group">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-white/[.05] border border-white/[.08] text-accent shrink-0">${icon('phone', 'w-5 h-5')}</span>
+              <span>
+                <span class="block text-sm text-neutral-500">Teléfono</span>
+                <span class="block text-neutral-200 group-hover:text-accent transition-colors">${b.phoneDisplay}</span>
+              </span>
+            </a>
+            <a href="mailto:${b.email}" class="flex items-start gap-4 group">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-white/[.05] border border-white/[.08] text-accent shrink-0">${icon('mail', 'w-5 h-5')}</span>
+              <span>
+                <span class="block text-sm text-neutral-500">Correo</span>
+                <span class="block text-neutral-200 group-hover:text-accent transition-colors">${b.email}</span>
+              </span>
+            </a>
+            <div class="flex items-start gap-4">
+              <span class="grid place-items-center w-10 h-10 rounded-xl bg-white/[.05] border border-white/[.08] text-accent shrink-0">${icon('clock', 'w-5 h-5')}</span>
+              <span class="w-full">
+                <span class="block text-sm text-neutral-500 mb-1.5">Horario</span>
+                ${b.hours.map(h => `<span class="flex justify-between gap-4 py-0.5 text-neutral-300 text-sm max-w-xs"><span>${h.day}</span><span class="text-neutral-500">${h.time}</span></span>`).join('')}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div data-reveal class="relative rounded-2xl overflow-hidden border border-white/[.08] bg-ink-900">
+          <iframe src="${b.mapEmbed}" class="w-full h-[420px] grayscale-[.4] contrast-[1.05]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de ${b.name}"></iframe>
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-950 to-transparent"></div>
+          <div class="pointer-events-none absolute bottom-4 left-4 right-4">
+            <a href="${b.mapsUrl}" target="_blank" rel="noopener" class="pointer-events-auto inline-flex items-center gap-2 rounded-lg bg-ink-950/90 border border-white/10 backdrop-blur px-4 py-2.5 text-sm font-medium text-neutral-200 hover:border-accent/50 hover:text-accent transition-colors">
+              ${icon('pin', 'w-4 h-4 text-accent')}
+              Cómo llegar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+
+  const footer = `
+  <footer class="border-t border-white/[.06] py-12">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
+      <div class="grid sm:grid-cols-3 gap-10">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="grid place-items-center w-8 h-8 rounded-lg bg-accent/12 border border-accent/30 text-accent">${icon('wrench', 'w-4 h-4')}</span>
+            <span class="font-semibold tracking-tight text-white">${b.name}</span>
+          </div>
+          <p class="mt-4 text-sm text-neutral-500 leading-relaxed max-w-xs">${CONFIG.footer.tagline}</p>
+          <p class="mt-4 text-sm text-neutral-600">${b.coverage}</p>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-white">${CONFIG.footer.servicesTitle}</h3>
+          <ul class="mt-4 space-y-2.5">
+            ${CONFIG.services.items.map(s => `<li><a href="#servicios" class="text-sm text-neutral-500 hover:text-accent transition-colors">${s.title}</a></li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-white">${CONFIG.footer.contactTitle}</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="${waLink()}" target="_blank" rel="noopener" class="text-neutral-500 hover:text-accent transition-colors">WhatsApp ${b.phoneDisplay}</a></li>
+            <li><a href="tel:+${b.phoneDigits}" class="text-neutral-500 hover:text-accent transition-colors">Llamar ${b.phoneDisplay}</a></li>
+            <li><a href="mailto:${b.email}" class="text-neutral-500 hover:text-accent transition-colors">${b.email}</a></li>
+            <li><a href="${b.mapsUrl}" target="_blank" rel="noopener" class="text-neutral-500 hover:text-accent transition-colors">${b.address}, ${b.addressLine2}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-white/[.06] flex flex-col sm:flex-row justify-between gap-2 text-sm text-neutral-600">
+        <span>&copy; ${new Date().getFullYear()} ${b.name}. ${CONFIG.footer.legal}</span>
+        <span>Reparamos lo que se puede, y lo que no, te lo decimos con honestidad.</span>
+      </div>
+    </div>
+  </footer>`;
+
+  const float = `
+  <a href="${waLink()}" target="_blank" rel="noopener" id="wa-float" aria-label="Escríbenos por WhatsApp"
+     class="fixed bottom-5 right-5 z-50 grid place-items-center w-14 h-14 rounded-full bg-wasa text-ink-950 glow-wa hover:bg-wasa-hover transition-all duration-300 translate-y-20 opacity-0 pointer-events-none">
+    <svg class="w-7 h-7" viewBox="0 0 24 24" aria-hidden="true">${ICONS.whatsapp}</svg>
+    <span class="absolute inset-0 rounded-full bg-wasa opacity-60 floaty"></span>
+  </a>`;
+
+  document.getElementById('app').innerHTML = header + hero + maint + symptoms + services + process + why + contact + footer + float;
+
+  const headerEl = document.getElementById('header');
+  const floatEl = document.getElementById('wa-float');
+  const onScroll = () => {
+    const y = window.scrollY;
+    headerEl.classList.toggle('bg-ink-950/85', y > 10);
+    headerEl.classList.toggle('backdrop-blur-md', y > 10);
+    headerEl.classList.toggle('border-white/[.07]', y > 10);
+    const show = y > 500;
+    floatEl.classList.toggle('translate-y-0', show);
+    floatEl.classList.toggle('opacity-100', show);
+    floatEl.classList.toggle('pointer-events-auto', show);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const revealEls = document.querySelectorAll('[data-reveal]');
+
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('reveal-in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('reveal-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+    revealEls.forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i % 4) * 60 + 'ms';
+      io.observe(el);
+    });
+
+    let queued = false;
+    const revealVisible = () => {
+      queued = false;
+      const h = window.innerHeight;
+      revealEls.forEach(el => {
+        if (el.classList.contains('reveal-in')) return;
+        if (el.getBoundingClientRect().top < h) { el.classList.add('reveal-in'); io.unobserve(el); }
+      });
+    };
+    window.addEventListener('scroll', () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(revealVisible);
+    }, { passive: true });
+    revealVisible();
+  }
+
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+}
+
+document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
