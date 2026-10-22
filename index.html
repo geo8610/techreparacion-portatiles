@@ -35,18 +35,34 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink-950: #0A0A0B;
-  --color-ink-900: #111113;
-  --color-ink-850: #161619;
-  --color-ink-800: #1D1D22;
-  --color-ink-700: #2A2A31;
+  /* ink - RGB para que funcionen opacidades (bg-ink-950/50, border-white/10, etc.) */
+  --color-ink-950: 10 10 11;
+  --color-ink-900: 17 17 19;
+  --color-ink-850: 22 22 25;
+  --color-ink-800: 29 29 34;
+  --color-ink-700: 42 42 49;
 
-  --color-accent: #22D3A5;
-  --color-accent-soft: #7BE8CD;
-  --color-accent-deep: #0E9E7A;
+  /* accent */
+  --color-accent: 34 211 165;
+  --color-accent-soft: 123 232 205;
+  --color-accent-deep: 14 158 122;
 
-  --color-wasa: #25D366;
-  --color-wasa-hover: #1EBE5A;
+  /* wasa (WhatsApp green) */
+  --color-wasa: 37 211 102;
+  --color-wasa-hover: 30 190 90;
+
+  /* neutral - para text-neutral-400, border-neutral-200, etc. */
+  --color-neutral-50: 250 250 250;
+  --color-neutral-100: 245 245 245;
+  --color-neutral-200: 229 229 229;
+  --color-neutral-300: 212 212 212;
+  --color-neutral-400: 163 163 163;
+  --color-neutral-500: 115 115 115;
+  --color-neutral-600: 82 82 82;
+  --color-neutral-700: 64 64 64;
+  --color-neutral-800: 38 38 38;
+  --color-neutral-900: 23 23 23;
+  --color-neutral-950: 10 10 10;
 
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --tracking-tightest: -0.045em;
