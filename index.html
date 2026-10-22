@@ -29,45 +29,38 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230A0A0B'/><path d='M28 30h44M28 50h30M28 70h44' stroke='%2322D3A5' stroke-width='9' stroke-linecap='round'/></svg>">
 
-<!-- Tailwind v4 (browser build desde unpkg - no bloqueado por firewalls corporativos) -->
-<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-<style>
-@import "tailwindcss";
-
-@theme {
-  /* ink - definidos como RGB para que funcionen opacidades (bg-ink-950/50, etc.) */
-  --color-ink-950: 10 10 11;
-  --color-ink-900: 17 17 19;
-  --color-ink-850: 22 22 25;
-  --color-ink-800: 29 29 34;
-  --color-ink-700: 42 42 49;
-
-  /* accent */
-  --color-accent: 34 211 165;
-  --color-accent-soft: 123 232 205;
-  --color-accent-deep: 14 158 122;
-
-  /* wasa (WhatsApp green) */
-  --color-wasa: 37 211 102;
-  --color-wasa-hover: 30 190 90;
-
-  /* neutral - para que text-neutral-400, border-neutral-200, etc. funcionen */
-  --color-neutral-50: 250 250 250;
-  --color-neutral-100: 245 245 245;
-  --color-neutral-200: 229 229 229;
-  --color-neutral-300: 212 212 212;
-  --color-neutral-400: 163 163 163;
-  --color-neutral-500: 115 115 115;
-  --color-neutral-600: 82 82 82;
-  --color-neutral-700: 64 64 64;
-  --color-neutral-800: 38 38 38;
-  --color-neutral-900: 23 23 23;
-  --color-neutral-950: 10 10 10;
-
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --tracking-tightest: -0.045em;
+<!-- Tailwind v3 desde unpkg (no bloqueado por firewalls corporativos) -->
+<script src="https://unpkg.com/tailwindcss@3.4.0/dist/tailwind.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: {
+          950: '#0A0A0B',
+          900: '#111113',
+          850: '#161619',
+          800: '#1D1D22',
+          700: '#2A2A31'
+        },
+        accent: {
+          DEFAULT: '#22D3A5',
+          soft: '#7BE8CD',
+          deep: '#0E9E7A'
+        },
+        wasa: {
+          DEFAULT: '#25D366',
+          hover: '#1EBE5A'
+        }
+      },
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+      },
+      letterSpacing: { tightest: '-0.045em' }
+    }
+  }
 }
-</style>
+</script>
 
 <!-- Polyfills y aviso para navegadores antiguos (IE / Edge Legacy) -->
 <script>
