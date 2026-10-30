@@ -306,23 +306,19 @@ const CONFIG = {
     online: 'Respuesta inmediata',
     launcher: 'Cotizar',
     launcherAria: 'Abrir el cotizador',
-    greeting: 'Hola. Soy el asistente de TechRepair. Cuéntame qué te pasa con tu equipo y te ayudo a agendar la revisión. ¿Cómo te llamas?',
-    quickTitle: 'O pregunta lo que quieras:',
-    steps: {
-      name:    '¿Cómo te llamas?',
-      device:  '¿Qué equipo tienes? Si sabes la marca y el modelo, mejor.',
-      fault:   '¿Cuál es el problema?',
-      appointment: '¿Cuándo te queda bien traerlo al taller?'
-    },
+    greeting: '¡Hola! 👋 Bienvenido a TechRepair. Con gusto te ayudamos a dejar tu equipo como nuevo.',
+    askName: '¿Con quién tengo el gusto de hablar?',
     skipName: 'Prefiero no decirlo',
-    thanks: 'Gracias, {name}. ',
-    thanksAnon: 'Gracias. ',
-    nameFallback: 'Escríbeme un nombre corto, por favor.',
-    deviceFallback: 'Dime al menos qué equipo es: portátil, MacBook, iMac…',
-    priceLead: 'Ese trabajo va desde',
-    priceTail: 'El valor final te lo confirmamos con el diagnóstico.',
-    timeLabel: 'Tiempo habitual',
-    photoAsk: 'Mándame fotos del daño por acá y te digo si hay que revisar la placa.',
+    askDiagnose: 'Un gusto, {name}. Cuentame, ¿qué marca y modelo de equipo tienes (ej: MacBook Air, HP Pavilion, Asus) y qué problema le notas?',
+    askDiagnoseAnon: 'Cuentame, ¿qué marca y modelo de equipo tienes (ej: MacBook Air, HP Pavilion, Asus) y qué problema le notas?',
+    solutionLead: 'Entendido. Para ese problema en TechRepair manejamos dos opciones principales:',
+    optionPhysical: '🔹 Mantenimiento Físico ({physical}): Limpieza interna profunda + cambio de pasta térmica (ideal para temperatura y ruido).',
+    optionIntegral: '⭐ Mantenimiento Integral Hardware + Software ({integral}) [Más recomendado]: Limpieza física completa + reinstalación limpia del sistema y optimización para que quede volando.',
+    warranty: 'Todos nuestros servicios incluyen garantía por escrito 🛡️ e inspección técnica previa.',
+    objection: 'No te preocupes por tus fotos o archivos: tus datos están 100% seguros 🔒 y no tocamos tu información personal. Además, te damos un presupuesto fijo antes de realizar cualquier trabajo extra.',
+    location: 'Estamos ubicados en el Centro Comercial Santa Catalina (Pereira) 📍.',
+    askClose: '¿A qué hora te queda mejor traernos el equipo hoy para agendar tu recepción?',
+    hold: 'Dame un segundo, ya te confirmo.',
     advice: {
       power:    'Suele ser la batería, el cargador o la placa. Lo confirmamos con el diagnóstico.',
       monitor:  'Si la imagen se ve en un monitor externo, el daño está en la pantalla. Si no, es video o placa.',
@@ -542,6 +538,8 @@ function chatFaq(id) {
   return '';
 }
 
+const money = (p) => String(p || '').replace(/^Desde\s*/, '');
+
 function chatStart() {
   const l = chatLog();
   l.innerHTML = '';
@@ -549,55 +547,53 @@ function chatStart() {
   chatState.name = chatState.device = chatState.symptom = chatState.icon = chatState.slot = '';
   chatBubble(BOT.greeting, 'bot');
   setTimeout(() => {
+    chatSay(BOT.askName);
     chatChips([BOT.skipName], () => chatSkipName());
   }, 500);
 }
 
-function chatGreetThanks() {
-  return chatState.name ? BOT.thanks.replace('{name}', chatState.name) : BOT.thanksAnon;
-}
-
-function chatAskDevice() {
-  chatState.step = 'device';
-  chatSay(chatGreetThanks() + BOT.steps.device);
+function chatDiagnose() {
+  chatState.step = 'diagnose';
+  chatSay(chatState.name ? BOT.askDiagnose.replace('{name}', chatState.name) : BOT.askDiagnoseAnon);
 }
 
 function chatFirstName(name) {
   const t = (name || '').trim().slice(0, 40);
-  if (t.length < 2) return chatSay(BOT.nameFallback);
+  if (t.length < 2) return chatSay(BOT.askName);
   chatState.name = t;
-  chatAskDevice();
+  chatDiagnose();
 }
 
 function chatSkipName() {
   chatBubble(BOT.skipName, 'user');
   chatState.name = '';
-  chatAskDevice();
+  chatDiagnose();
 }
 
-function chatAskFault() {
-  chatState.step = 'fault';
-  chatSay(BOT.steps.fault);
-  chatChips(CONFIG.symptoms.items.map(s => s.title), i => chatPickSymptom(i));
-}
-
-function chatPickSymptom(i) {
-  const sym = CONFIG.symptoms.items[i];
-  if (!sym) return;
-  chatBubble(sym.title, 'user');
-  chatState.symptom = sym.title;
-  chatState.icon = sym.icon;
-  chatState.step = 'appointment';
-  const svc = serviceOf(sym.icon);
-  const body = svc
-    ? BOT.priceLead + ' <strong class="text-white">' + svc.price + '</strong>' + (svc.time ? ' (' + svc.time + ')' : '') + '.<br>' + BOT.priceTail
-    : BOT.priceLead + ' el precio te lo confirmamos con el diagnóstico.';
-  const advice = BOT.advice[sym.icon] ? '<br>' + BOT.advice[sym.icon] : '';
-  chatSay(body + advice + '<br>' + BOT.photoAsk);
+function chatSolution() {
+  chatState.step = 'solution';
+  const phys = CONFIG.services.items.find(s => s.icon === 'fan');
+  const integral = CONFIG.hero.maintenance;
+  const advice = BOT.advice[chatState.icon] ? BOT.advice[chatState.icon] + '<br>' : '';
+  chatSay(advice + BOT.solutionLead);
+  setTimeout(() => chatSay(BOT.optionPhysical.replace('{physical}', money(phys && phys.price))), 900);
+  setTimeout(() => chatSay(BOT.optionIntegral.replace('{integral}', money(integral.price))), 1800);
   setTimeout(() => {
-    chatSay(BOT.steps.appointment);
-    chatChips(BOT.slots, k => chatPickSlot(BOT.slots[k]));
-  }, 900);
+    chatSay(BOT.warranty);
+    setTimeout(chatObjection, 900);
+  }, 2700);
+}
+
+function chatObjection() {
+  chatState.step = 'objection';
+  chatSay(BOT.objection);
+  setTimeout(chatClose, 900);
+}
+
+function chatClose() {
+  chatState.step = 'close';
+  chatSay(BOT.location + '<br>' + BOT.askClose);
+  setTimeout(() => chatChips(BOT.slots, k => chatPickSlot(BOT.slots[k])), 900);
 }
 
 function chatPickSlot(label, echoed) {
@@ -608,12 +604,11 @@ function chatPickSlot(label, echoed) {
 }
 
 function chatSummary() {
-  const sym = CONFIG.symptoms.items.find(s => s.title === chatState.symptom);
   let msg = 'Hola, te escribo desde la página de ' + CONFIG.brand.name + '.';
   msg += '\n\nQuiero agendar una revisión técnica.';
   if (chatState.name) msg += '\nNombre: ' + chatState.name;
-  msg += '\nEquipo: ' + (chatState.device || 'por confirmar');
-  if (sym) msg += '\nProblema: ' + sym.title + ' — ' + sym.text;
+  if (chatState.device) msg += '\nEquipo y falla: ' + chatState.device;
+  if (chatState.symptom) msg += '\nCoincide con: ' + chatState.symptom;
   if (chatState.slot) msg += '\nHorario preferido: ' + chatState.slot;
   return msg;
 }
@@ -648,27 +643,38 @@ function chatSubmit(text) {
   const faq = chatMatchFaq(t);
   if (faq) { chatSay(chatFaq(faq)); return chatOfferContinue(); }
   if (chatState.step === 'name') return chatFirstName(t);
-  if (chatState.step === 'device') {
-    if (t.length < 3) return chatSay(BOT.deviceFallback);
-    chatState.device = t.slice(0, 60);
-    return chatAskFault();
+  if (chatState.step === 'diagnose') {
+    if (t.length < 3) return chatSay(BOT.askDiagnoseAnon);
+    chatState.device = t.slice(0, 80);
+    const f = chatMatchFault(t);
+    if (f >= 0) {
+      chatState.symptom = CONFIG.symptoms.items[f].title;
+      chatState.icon = CONFIG.symptoms.items[f].icon;
+    } else {
+      chatState.symptom = '';
+      chatState.icon = '';
+    }
+    return chatSolution();
   }
-  if (chatState.step === 'appointment') return chatPickSlot(t.slice(0, 40), true);
-  const f = chatMatchFault(t);
-  if (f >= 0) return chatPickSymptom(f);
+  if (chatState.step === 'close') return chatPickSlot(t.slice(0, 40), true);
+  if (chatState.step === 'solution' || chatState.step === 'objection') return chatSay(BOT.hold);
   chatSay(BOT.fallback + '<br><span class="text-neutral-500">' + BOT.notSure + '</span>');
 }
 
 function chatOfferContinue() {
   chatChips(['Quiero agendar una revisión', 'Hablar con el técnico'], i => {
-    if (i === 0) {
-      if (chatState.name) return chatAskDevice();
-      chatState.step = 'name';
-      chatSay(BOT.steps.name);
-      chatChips([BOT.skipName], () => chatSkipName());
-    } else {
-      chatLink(BOT.cta, waLink(chatSummary()), true);
+    if (i === 1) return chatLink(BOT.cta, waLink(chatSummary()), true);
+    if (chatState.step === 'name') {
+      chatSay(BOT.askName);
+      return chatChips([BOT.skipName], () => chatSkipName());
     }
+    if (chatState.step === 'diagnose') return chatDiagnose();
+    if (chatState.step === 'close') {
+      chatSay(BOT.askClose);
+      return chatChips(BOT.slots, k => chatPickSlot(BOT.slots[k]));
+    }
+    if (chatState.step === 'idle' || chatState.step === 'done' || chatState.step === 'handoff') return chatStart();
+    return chatHandoff();
   });
 }
 
