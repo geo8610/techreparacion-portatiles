@@ -306,24 +306,35 @@ const CONFIG = {
     online: 'Respuesta inmediata',
     launcher: 'Cotizar',
     launcherAria: 'Abrir el cotizador',
-    greeting: 'Hola. Soy el asistente de TechRepair. Te doy precios y tiempos al instante, sin vueltas. ¿Qué te pasa?',
+    greeting: 'Hola. Soy el asistente de TechRepair. Cuéntame qué te pasa con tu equipo y te ayudo a agendar la revisión. ¿Cómo te llamas?',
     quickTitle: 'O pregunta lo que quieras:',
     steps: {
-      device:  '¿Qué equipo tienes?',
+      name:    '¿Cómo te llamas?',
+      device:  '¿Qué equipo tienes? Si sabes la marca y el modelo, mejor.',
       fault:   '¿Cuál es el problema?',
-      urgency: '¿Lo necesitas para trabajar o estudiar?',
-      name:    '¿Cómo te llamas?'
+      appointment: '¿Cuándo te queda bien traerlo al taller?'
     },
-    devices: ['Portátil Windows', 'MacBook o Mac'],
-    urgency: ['Sí, es urgente', 'Puedo esperar unos días'],
+    skipName: 'Prefiero no decirlo',
+    thanks: 'Gracias, {name}. ',
+    thanksAnon: 'Gracias. ',
+    nameFallback: 'Escríbeme un nombre corto, por favor.',
+    deviceFallback: 'Dime al menos qué equipo es: portátil, MacBook, iMac…',
     priceLead: 'Ese trabajo va desde',
     priceTail: 'El valor final te lo confirmamos con el diagnóstico.',
     timeLabel: 'Tiempo habitual',
-    photoAsk: 'Mándame fotos del daño por acá y te digo si hay que revisar la placa. Con eso ya te cotizo.',
-    urgent: 'Anotado como urgente. Te paso con el técnico ahora mismo.',
-    handoffTitle: 'Te paso con el técnico',
-    handoffText: 'Ya tengo tu caso. Abrimos WhatsApp con el resumen para que no tengas que explicar nada desde cero.',
-    cta: 'Continuar por WhatsApp',
+    photoAsk: 'Mándame fotos del daño por acá y te digo si hay que revisar la placa.',
+    advice: {
+      power:    'Suele ser la batería, el cargador o la placa. Lo confirmamos con el diagnóstico.',
+      monitor:  'Si la imagen se ve en un monitor externo, el daño está en la pantalla. Si no, es video o placa.',
+      battery:  'Con batería nueva vuelve la autonomía. Si sigue igual, medimos el consumo.',
+      fan:      'Limpieza interna y pasta térmica suelen resolver el calor y la lentitud.',
+      droplet:  'Hay que limpiar la placa con ultrasonido y revisar la corrosión cuanto antes.',
+      keyboard: 'Puede ser el teclado o el flex; lo confirmamos al abrirlo.'
+    },
+    slots: ['Hoy mismo', 'Mañana en la mañana', 'Mañana en la tarde', 'Esta semana', 'Coordinar por WhatsApp'],
+    bookingTitle: 'Listo{name}. Agendemos la revisión',
+    bookingText: 'Abrimos WhatsApp con el resumen para que no tengas que explicar nada desde cero.',
+    cta: 'Confirmar cita por WhatsApp',
     reset: 'Empezar de nuevo',
     fallback: 'No te entendí. ¿Puedes elegir una de las opciones?',
     typing: 'escribiendo',
@@ -441,6 +452,8 @@ function chatMarkup() {
 
 function chatLog() { return document.getElementById('chat-log'); }
 
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
 function chatScroll() { const l = chatLog(); l.scrollTop = l.scrollHeight; }
 
 function chatBubble(html, from) {
@@ -499,7 +512,7 @@ function chatSay(html, delay) {
   }, delay || 380);
 }
 
-const chatState = { step: 'idle', device: '', symptom: '', urgent: '', name: '' };
+const chatState = { step: 'idle', name: '', device: '', symptom: '', icon: '', slot: '' };
 
 function chatFaq(id) {
   const b = CONFIG.brand;
@@ -532,18 +545,37 @@ function chatFaq(id) {
 function chatStart() {
   const l = chatLog();
   l.innerHTML = '';
-  chatState.step = 'device';
-  chatState.device = chatState.symptom = chatState.urgent = chatState.name = '';
+  chatState.step = 'name';
+  chatState.name = chatState.device = chatState.symptom = chatState.icon = chatState.slot = '';
   chatBubble(BOT.greeting, 'bot');
   setTimeout(() => {
-    chatSay(BOT.steps.device);
-    chatChips(BOT.devices, i => chatPickDevice(BOT.devices[i]));
+    chatChips([BOT.skipName], () => chatSkipName());
   }, 500);
 }
 
-function chatPickDevice(label) {
-  chatBubble(label, 'user');
-  chatState.device = label;
+function chatGreetThanks() {
+  return chatState.name ? BOT.thanks.replace('{name}', chatState.name) : BOT.thanksAnon;
+}
+
+function chatAskDevice() {
+  chatState.step = 'device';
+  chatSay(chatGreetThanks() + BOT.steps.device);
+}
+
+function chatFirstName(name) {
+  const t = (name || '').trim().slice(0, 40);
+  if (t.length < 2) return chatSay(BOT.nameFallback);
+  chatState.name = t;
+  chatAskDevice();
+}
+
+function chatSkipName() {
+  chatBubble(BOT.skipName, 'user');
+  chatState.name = '';
+  chatAskDevice();
+}
+
+function chatAskFault() {
   chatState.step = 'fault';
   chatSay(BOT.steps.fault);
   chatChips(CONFIG.symptoms.items.map(s => s.title), i => chatPickSymptom(i));
@@ -551,46 +583,45 @@ function chatPickDevice(label) {
 
 function chatPickSymptom(i) {
   const sym = CONFIG.symptoms.items[i];
+  if (!sym) return;
   chatBubble(sym.title, 'user');
   chatState.symptom = sym.title;
-  chatState.step = 'urgency';
+  chatState.icon = sym.icon;
+  chatState.step = 'appointment';
   const svc = serviceOf(sym.icon);
   const body = svc
     ? BOT.priceLead + ' <strong class="text-white">' + svc.price + '</strong>' + (svc.time ? ' (' + svc.time + ')' : '') + '.<br>' + BOT.priceTail
     : BOT.priceLead + ' el precio te lo confirmamos con el diagnóstico.';
-  chatSay(body + '<br>' + BOT.photoAsk);
+  const advice = BOT.advice[sym.icon] ? '<br>' + BOT.advice[sym.icon] : '';
+  chatSay(body + advice + '<br>' + BOT.photoAsk);
   setTimeout(() => {
-    chatSay(BOT.steps.urgency);
-    chatChips(BOT.urgency, k => chatPickUrgency(k === 0));
+    chatSay(BOT.steps.appointment);
+    chatChips(BOT.slots, k => chatPickSlot(BOT.slots[k]));
   }, 900);
 }
 
-function chatPickUrgency(isUrgent) {
-  chatBubble(isUrgent ? BOT.urgency[0] : BOT.urgency[1], 'user');
-  chatState.urgent = isUrgent ? 'urgente' : 'puede esperar';
+function chatPickSlot(label, echoed) {
+  if (!echoed) chatBubble(label, 'user');
+  chatState.slot = label;
   chatState.step = 'handoff';
-  if (isUrgent) {
-    chatSay(BOT.urgent);
-    setTimeout(chatHandoff, 700);
-  } else {
-    chatState.step = 'name';
-    chatSay(BOT.steps.name);
-  }
+  chatHandoff();
 }
 
 function chatSummary() {
   const sym = CONFIG.symptoms.items.find(s => s.title === chatState.symptom);
   let msg = 'Hola, te escribo desde la página de ' + CONFIG.brand.name + '.';
-  msg += '\n\nEquipo: ' + (chatState.device || 'por confirmar');
+  msg += '\n\nQuiero agendar una revisión técnica.';
   if (chatState.name) msg += '\nNombre: ' + chatState.name;
+  msg += '\nEquipo: ' + (chatState.device || 'por confirmar');
   if (sym) msg += '\nProblema: ' + sym.title + ' — ' + sym.text;
-  if (chatState.urgent) msg += '\nUrgencia: ' + chatState.urgent;
+  if (chatState.slot) msg += '\nHorario preferido: ' + chatState.slot;
   return msg;
 }
 
 function chatHandoff() {
   chatState.step = 'done';
-  chatSay(BOT.handoffTitle + '. ' + BOT.handoffText);
+  const title = BOT.bookingTitle.replace('{name}', chatState.name ? ', ' + chatState.name : '');
+  chatSay(title + '. ' + BOT.bookingText);
   chatLink(BOT.cta, waLink(chatSummary()), true);
   chatBubble('<span class="text-neutral-500">' + BOT.notSure + '</span>', 'bot');
 }
@@ -613,19 +644,31 @@ function chatMatchFaq(text) {
 function chatSubmit(text) {
   const t = (text || '').trim();
   if (!t) return;
-  chatBubble(t.replace(/[<>]/g, ''), 'user');
+  chatBubble(esc(t), 'user');
   const faq = chatMatchFaq(t);
-  if (chatState.step === 'name') { chatState.name = t.slice(0, 40); return chatHandoff(); }
   if (faq) { chatSay(chatFaq(faq)); return chatOfferContinue(); }
+  if (chatState.step === 'name') return chatFirstName(t);
+  if (chatState.step === 'device') {
+    if (t.length < 3) return chatSay(BOT.deviceFallback);
+    chatState.device = t.slice(0, 60);
+    return chatAskFault();
+  }
+  if (chatState.step === 'appointment') return chatPickSlot(t.slice(0, 40), true);
   const f = chatMatchFault(t);
   if (f >= 0) return chatPickSymptom(f);
   chatSay(BOT.fallback + '<br><span class="text-neutral-500">' + BOT.notSure + '</span>');
 }
 
 function chatOfferContinue() {
-  chatChips(['Quiero cotizar', 'Hablar con el técnico'], i => {
-    if (i === 0) { chatBubble(BOT.steps.device, 'user'); chatState.step = 'device'; chatChips(BOT.devices, k => chatPickDevice(BOT.devices[k])); }
-    else chatLink(BOT.cta, waLink(), true);
+  chatChips(['Quiero agendar una revisión', 'Hablar con el técnico'], i => {
+    if (i === 0) {
+      if (chatState.name) return chatAskDevice();
+      chatState.step = 'name';
+      chatSay(BOT.steps.name);
+      chatChips([BOT.skipName], () => chatSkipName());
+    } else {
+      chatLink(BOT.cta, waLink(chatSummary()), true);
+    }
   });
 }
 
