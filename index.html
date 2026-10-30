@@ -318,15 +318,6 @@ const CONFIG = {
     objection: 'No te preocupes por tus fotos o archivos: tus datos están 100% seguros 🔒 y no tocamos tu información personal. Además, te damos un presupuesto fijo antes de realizar cualquier trabajo extra.',
     location: 'Estamos ubicados en el Centro Comercial Santa Catalina (Pereira) 📍.',
     askClose: '¿A qué hora te queda mejor traernos el equipo hoy para agendar tu recepción?',
-    hold: 'Dame un segundo, ya te confirmo.',
-    advice: {
-      power:    'Suele ser la batería, el cargador o la placa. Lo confirmamos con el diagnóstico.',
-      monitor:  'Si la imagen se ve en un monitor externo, el daño está en la pantalla. Si no, es video o placa.',
-      battery:  'Con batería nueva vuelve la autonomía. Si sigue igual, medimos el consumo.',
-      fan:      'Limpieza interna y pasta térmica suelen resolver el calor y la lentitud.',
-      droplet:  'Hay que limpiar la placa con ultrasonido y revisar la corrosión cuanto antes.',
-      keyboard: 'Puede ser el teclado o el flex; lo confirmamos al abrirlo.'
-    },
     slots: ['Hoy mismo', 'Mañana en la mañana', 'Mañana en la tarde', 'Esta semana', 'Coordinar por WhatsApp'],
     bookingTitle: 'Listo{name}. Agendemos la revisión',
     bookingText: 'Abrimos WhatsApp con el resumen para que no tengas que explicar nada desde cero.',
@@ -574,20 +565,15 @@ function chatSolution() {
   chatState.step = 'solution';
   const phys = CONFIG.services.items.find(s => s.icon === 'fan');
   const integral = CONFIG.hero.maintenance;
-  const advice = BOT.advice[chatState.icon] ? BOT.advice[chatState.icon] + '<br>' : '';
-  chatSay(advice + BOT.solutionLead);
+  chatSay(BOT.solutionLead);
   setTimeout(() => chatSay(BOT.optionPhysical.replace('{physical}', money(phys && phys.price))), 900);
   setTimeout(() => chatSay(BOT.optionIntegral.replace('{integral}', money(integral.price))), 1800);
-  setTimeout(() => {
-    chatSay(BOT.warranty);
-    setTimeout(chatObjection, 900);
-  }, 2700);
+  setTimeout(() => chatSay(BOT.warranty), 2700);
 }
 
 function chatObjection() {
   chatState.step = 'objection';
   chatSay(BOT.objection);
-  setTimeout(chatClose, 900);
 }
 
 function chatClose() {
@@ -641,7 +627,10 @@ function chatSubmit(text) {
   if (!t) return;
   chatBubble(esc(t), 'user');
   const faq = chatMatchFaq(t);
-  if (faq) { chatSay(chatFaq(faq)); return chatOfferContinue(); }
+  if (faq && (chatState.step === 'idle' || chatState.step === 'done' || chatState.step === 'handoff')) {
+    chatSay(chatFaq(faq));
+    return chatOfferContinue();
+  }
   if (chatState.step === 'name') return chatFirstName(t);
   if (chatState.step === 'diagnose') {
     if (t.length < 3) return chatSay(BOT.askDiagnoseAnon);
@@ -657,7 +646,8 @@ function chatSubmit(text) {
     return chatSolution();
   }
   if (chatState.step === 'close') return chatPickSlot(t.slice(0, 40), true);
-  if (chatState.step === 'solution' || chatState.step === 'objection') return chatSay(BOT.hold);
+  if (chatState.step === 'solution') return chatObjection();
+  if (chatState.step === 'objection') return chatClose();
   chatSay(BOT.fallback + '<br><span class="text-neutral-500">' + BOT.notSure + '</span>');
 }
 
