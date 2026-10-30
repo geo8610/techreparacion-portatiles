@@ -208,13 +208,16 @@ const CONFIG = {
       title: 'Mantenimiento preventivo completo',
       lead: 'Casi todos los fallos que verás en tu portátil se acumularon mucho antes de romperse: un ventilador tapado de polvo, la pasta térmica seca, el sistema lleno de archivos basura. El mantenimiento es la forma más barata de reparación que existe.',
       bullets: [
-        'Limpieza profunda de ventiladores y canales de aire',
-        'Cambio de pasta térmica y cleaning del disipador',
-        'Limpieza de teclado, bisagras y puertos',
-        'Calibración y prueba de batería',
+        'Físico: limpieza profunda de ventiladores y canales de aire',
+        'Físico: cambio de pasta térmica y limpieza del disipador',
+        'Físico: limpieza de teclado, bisagras y puertos',
+        'Físico: calibración y prueba de batería',
+        'Software: copia de seguridad de tus datos',
+        'Software: reinstalación limpia de macOS o Windows',
+        'Software: drivers, actualizaciones y programas esenciales',
         'Entrega el mismo día'
       ],
-      price: 'Desde $70.000',
+      price: 'Desde $110.000',
       cta: 'Cotizar mantenimiento'
     }
   },
@@ -237,9 +240,15 @@ const CONFIG = {
     subtitle: 'Precios aproximados. El valor final te lo confirmamos con el diagnóstico, sin cambios ni sorpresas.',
     note: 'Todos los trabajos incluyen prueba de carga completa y garantía por escrito.',
     items: [
-      { icon: 'wrench',   title: 'Mantenimiento preventivo',       price: 'Desde $70.000',  time: 'Mismo día', featured: true,
-        text: 'El servicio que alarga la vida de tu equipo. Limpieza interna profunda y cambio de pasta térmica para que deje de calentarse y de perder rendimiento.',
-        bullets: ['Limpieza de ventiladores y canales de aire', 'Cambio de pasta térmica', 'Calibración y prueba de batería'] },
+      { icon: 'wrench',   title: 'Mantenimiento preventivo completo', price: 'Desde $110.000', time: 'Mismo día', featured: true,
+        text: 'El servicio que alarga la vida de tu equipo. Mantenimiento físico y de software en una sola visita: limpieza interna profunda, pasta térmica nueva y sistema reinstalado como el primer día.',
+        bullets: ['Físico: limpieza de ventiladores y canales de aire', 'Físico: cambio de pasta térmica y disipador', 'Físico: teclado, bisagras y puertos', 'Físico: calibración y prueba de batería', 'Software: copia de seguridad de tus datos', 'Software: reinstalación limpia de macOS o Windows', 'Software: drivers, actualizaciones y programas esenciales'] },
+      { icon: 'fan',      title: 'Mantenimiento de hardware',      price: 'Desde $70.000',  time: 'Mismo día', featured: false,
+        text: 'Solo la parte física: dejamos el interior limpio y el equipo frío para que recupere rendimiento y deje de calentarse.',
+        bullets: ['Limpieza de ventiladores y canales de aire', 'Cambio de pasta térmica y disipador', 'Limpieza de teclado, bisagras y puertos', 'Calibración y prueba de batería'] },
+      { icon: 'spark',    title: 'Mantenimiento de software',      price: 'Desde $50.000',  time: 'Mismo día', featured: false,
+        text: 'Solo la parte lógica: respaldamos tus datos y dejamos el sistema limpio, actualizado y funcionando como nuevo.',
+        bullets: ['Copia de seguridad de tus datos', 'Reinstalación limpia de macOS o Windows', 'Drivers, actualizaciones y programas esenciales'] },
       { icon: 'monitor',  title: 'Cambio de pantalla',            price: 'Desde $180.000', time: 'Mismo día', featured: false,
         text: 'Reemplazo completo de panel en Windows y Mac, con pantallas de calidad Retina/IPS y calibración de color.',
         bullets: ['MacBook Air, Pro y iMac', 'Reparamos flexgate y retroiluminación', 'Garantía en el panel'] },
@@ -512,7 +521,10 @@ function chatFaq(id) {
     return s ? s.text + ' ' + s.price + '. ' + s.time + '.' : '';
   }
   if (id === 'mantenimiento') {
-    return CONFIG.hero.maintenance.lead + '<br>' + CONFIG.hero.maintenance.bullets.slice(0, 3).join(' · ');
+    const m = CONFIG.hero.maintenance;
+    const phys = m.bullets.filter(b => b.indexOf('Físico:') === 0).slice(0, 2);
+    const soft = m.bullets.filter(b => b.indexOf('Software:') === 0).slice(0, 1);
+    return m.lead + '<br>' + phys.concat(soft).join(' · ');
   }
   return '';
 }
