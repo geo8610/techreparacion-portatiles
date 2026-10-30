@@ -240,25 +240,25 @@ const CONFIG = {
     subtitle: 'Precios aproximados. El valor final te lo confirmamos con el diagnóstico, sin cambios ni sorpresas.',
     note: 'Todos los trabajos incluyen prueba de carga completa y garantía por escrito.',
     items: [
-      { icon: 'wrench',   title: 'Mantenimiento preventivo completo', price: 'Desde $110.000', time: 'Mismo día', featured: true,
+      { icon: 'wrench',   title: 'Mantenimiento preventivo completo', price: 'Desde $110.000', featured: true,
         text: 'El servicio que alarga la vida de tu equipo. Mantenimiento físico y de software en una sola visita: limpieza interna profunda, pasta térmica nueva y sistema reinstalado como el primer día.',
         bullets: ['Físico: limpieza de ventiladores y canales de aire', 'Físico: cambio de pasta térmica y disipador', 'Físico: teclado, bisagras y puertos', 'Físico: calibración y prueba de batería', 'Software: copia de seguridad de tus datos', 'Software: reinstalación limpia de macOS o Windows', 'Software: drivers, actualizaciones y programas esenciales'] },
-      { icon: 'fan',      title: 'Mantenimiento de hardware',      price: 'Desde $70.000',  time: 'Mismo día', featured: false,
+      { icon: 'fan',      title: 'Mantenimiento de hardware',      price: 'Desde $70.000',  featured: false,
         text: 'Solo la parte física: dejamos el interior limpio y el equipo frío para que recupere rendimiento y deje de calentarse.',
         bullets: ['Limpieza de ventiladores y canales de aire', 'Cambio de pasta térmica y disipador', 'Limpieza de teclado, bisagras y puertos', 'Calibración y prueba de batería'] },
-      { icon: 'spark',    title: 'Mantenimiento de software',      price: 'Desde $80.000',  time: 'Mismo día', featured: false,
+      { icon: 'spark',    title: 'Mantenimiento de software',      price: 'Desde $80.000',  featured: false,
         text: 'Solo la parte lógica: respaldamos tus datos y dejamos el sistema limpio, actualizado y funcionando como nuevo.',
         bullets: ['Copia de seguridad de tus datos', 'Reinstalación limpia de macOS o Windows', 'Drivers, actualizaciones y programas esenciales'] },
-      { icon: 'monitor',  title: 'Cambio de pantalla',            price: 'Desde $180.000', time: 'Mismo día', featured: false,
+      { icon: 'monitor',  title: 'Cambio de pantalla',            price: 'Desde $180.000', featured: false,
         text: 'Reemplazo completo de panel en Windows y Mac, con pantallas de calidad Retina/IPS y calibración de color.',
         bullets: ['MacBook Air, Pro y iMac', 'Reparamos flexgate y retroiluminación', 'Garantía en el panel'] },
       { icon: 'battery',  title: 'Cambio de batería',             price: 'Desde $95.000',  time: '1 a 2 horas', featured: false,
         text: 'Baterías de igual o mayor capacidad que la original, con calibración profesional después de instalar.',
         bullets: ['De 2012 a la actualidad', 'Hasta 10+ horas de uso real', 'Batería al 100% de salud'] },
-      { icon: 'keyboard', title: 'Teclado y daño por líquido',    price: 'Desde $120.000', time: 'Mismo día', featured: false,
+      { icon: 'keyboard', title: 'Teclado y daño por líquido',    price: 'Desde $120.000', featured: false,
         text: 'Cambio completo de teclado, incluyendo los mecanismos Butterfly y Scissor de MacBook.',
         bullets: ['Retroiluminación funcional', 'Limpieza de placa por líquidos', 'Layout español o inglés'] },
-      { icon: 'drive',    title: 'Cambio y ampliación de SSD',    price: 'Desde $140.000', time: 'Mismo día', featured: false,
+      { icon: 'drive',    title: 'Cambio y ampliación de SSD',    price: 'Desde $140.000', featured: false,
         text: 'Instalación de disco NVMe para que tu equipo arranque en segundos y aguante el doble de años.',
         bullets: ['Clonado sin perder tus archivos', 'El doble de espacio', 'Instalación del sistema'] },
       { icon: 'chip',     title: 'Reparación de placa',           price: 'Desde $180.000', time: '1 a 3 días', featured: false,
@@ -518,7 +518,7 @@ function chatFaq(id) {
   }
   if (id === 'placa') {
     const s = CONFIG.services.items.find(x => x.icon === 'chip');
-    return s ? s.text + ' ' + s.price + '. ' + s.time + '.' : '';
+    return s ? s.text + ' ' + s.price + (s.time ? '. ' + s.time : '') + '.' : '';
   }
   if (id === 'mantenimiento') {
     const m = CONFIG.hero.maintenance;
@@ -556,7 +556,7 @@ function chatPickSymptom(i) {
   chatState.step = 'urgency';
   const svc = serviceOf(sym.icon);
   const body = svc
-    ? BOT.priceLead + ' <strong class="text-white">' + svc.price + '</strong> (' + svc.time + ').<br>' + BOT.priceTail
+    ? BOT.priceLead + ' <strong class="text-white">' + svc.price + '</strong>' + (svc.time ? ' (' + svc.time + ')' : '') + '.<br>' + BOT.priceTail
     : BOT.priceLead + ' el precio te lo confirmamos con el diagnóstico.';
   chatSay(body + '<br>' + BOT.photoAsk);
   setTimeout(() => {
@@ -866,7 +866,7 @@ function render() {
             </div>
             <div class="sm:text-right shrink-0">
               <div class="text-2xl font-semibold tracking-tight text-accent">${s.price}</div>
-              <div class="mt-1 text-sm text-neutral-500">${s.time}</div>
+              ${s.time ? `<div class="mt-1 text-sm text-neutral-500">${s.time}</div>` : ''}
               <a href="${waLink('Hola, quiero cotizar: ' + s.title + '.')}" target="_blank" rel="noopener"
                  class="mt-5 inline-flex items-center gap-2 rounded-lg bg-wasa px-4 py-2.5 text-sm font-semibold text-ink-950 hover:bg-wasa-hover transition-colors">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">${ICONS.whatsapp}</svg>
@@ -882,7 +882,7 @@ function render() {
             </span>
             <div class="text-right">
               <div class="font-semibold text-accent text-[15px]">${s.price}</div>
-              <div class="text-xs text-neutral-500 mt-0.5">${s.time}</div>
+              ${s.time ? `<div class="text-xs text-neutral-500 mt-0.5">${s.time}</div>` : ''}
             </div>
           </div>
           <h3 class="mt-5 font-semibold text-white">${s.title}</h3>
