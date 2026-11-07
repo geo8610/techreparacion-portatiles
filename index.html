@@ -322,6 +322,16 @@ const ICONS = {
 
 const WA = 'https://wa.me/' + CONFIG.brand.phoneDigits;
 const waLink = (msg) => WA + '?text=' + encodeURIComponent(msg || 'Hola, quiero información sobre la reparación de mi portátil.');
+const WA_CONVERSION = 'AW-18531863081/sDFbCMXsi7QdEKmU14RF';
+
+document.addEventListener('click', function (e) {
+  const link = e.target.closest && e.target.closest('a[href*="wa.me/"]');
+  if (!link || typeof gtag !== 'function') return;
+  gtag('event', 'conversion', {
+    send_to: WA_CONVERSION,
+    transport_type: 'beacon'
+  });
+});
 
 function icon(name, cls) {
   return '<svg class="' + (cls || 'w-5 h-5') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[name] || '') + '</svg>';
